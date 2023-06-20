@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Flight Log - Atwell</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="https://www.atwell-group.com/wp-content/themes/atwell-theme/favicon.png">
+
+  <!--Bootstrap 5-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  <!--JQuery-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script src="scripts/bootstrap_style_set.js"></script>
+  <script src="scripts/pdf-lib.min.js"></script>
+  <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+  <script src="scripts/fill-pdf.js"></script>
+  <link href="common_styles.css" rel="stylesheet">
+</head>
+<main>
+  <div class="container py-2 px-2 px-sm-5 min-vh-100">
+    <div class="pb-5">
+      <h2>Drone Flight Information Form</h2>
+    </div>
+    <div class="col-12">
+      <div class="progress mb-4">
+        <div aria-valuemax="100" id="progress" aria-valuemin="0" aria-valuenow="50" class="progress-bar bg-primary" role="progressbar" style="width: 0%"></div>
+      </div>
+      <div class="step">
+        <h4 class="mb-4 text-center">General Information</h4>
+        <div class="row">
+          <div class="col-12 col-sm-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="job_number" placeholder="1234567890" value="23009999">
+              <label for="job_number">Job Number</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="flight_number" placeholder="1" value="1">
+              <label for="flight_number">Flight Number</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="project_area" placeholder="1" value="5.24">
+              <label for="project_area">Area (Acres)</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-floating mb-3">
+              <select class="form-select" id="drone_Name" aria-label="Drone ID">
+              </select>
+              <label for="drone_Name">Drone</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3">
+            <div class="form-floating mb-3">
+              <input id="drone_id" type="text" class="form-control" placeholder="test" readonly>
+              <label for="drone_ID">FAA Registration Number</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-2">
+            <div class="form-floating mb-3">
+              <input id="Flight_Type" type="text" class="form-control" placeholder="test">
+              <label for="drone_battery">Battery</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3">
+            <div class="form-floating mb-3">
+              <select class="form-select" id="flight_type" aria-label="Flight type">
+                <option value="Photogrammerty">Photogrammetry</option>
+                <option>Lidar</option>
+                <option>Training</option>
+              </select>
+              <label for="flight_type">Flight Type</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step" style="display: none;">
+        <h4 class="mb-4 text-center">Exceptions</h4>
+        <div class="row">
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="25" id="107_25">
+              <label class="form-check-label" for="107_25">
+                § 107.25 - Operation from a Moving Vehicle or Aircraft
+              </label>
+              <p>Allows pilot to fly a small UAS from a moving aircraft or a vehicle in populated areas.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="29" id="107_29a">
+              <label class="form-check-label" for="107_29a">
+                § 107.29(a)(2) - Operation at night
+              </label>
+              <p>Allows pilot to fly a small UAS at night without anti-collision lighting.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="29" id="107_29b">
+              <label class="form-check-label" for="107_29b">
+                § 107.29(b) - Operation at Night
+              </label>
+              <p>Allows pilot to fly a small UAS during periods of civil twilight without anti-collision lighting.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="31" id="107_31">
+              <label class="form-check-label" for="107_31">
+                § 107.31 - Visual Line of Sight Aircraft Operation
+              </label>
+              <p>Allows pilot to fly a small UAS beyond your ability to clearly determine the position, altitude, attitude, and movement of the sUAS, with unaided vision.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="33" id="107_33">
+              <label class="form-check-label" for="107_33">
+                § 107.33 - Visual Observer
+              </label>
+              <p>Allows pilot to use a visual observer without following all visual observer requirements.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="35" id="107_35">
+              <label class="form-check-label" for="107_35">
+                § 107.35 - Operation of Multiple Small UAS
+              </label>
+              <p>Allows pilot to fly multiple small UAS with only one remote pilot.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="39" id="107_39">
+              <label class="form-check-label" for="107_39">
+                § 107.39 - Operation over human beings
+              </label>
+              <p>Allows pilot to fly over a person with a small UAS which does not meet conditions of operational categories 1, 2, 3, or 4.</p>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="51" id="107_51">
+              <label class="form-check-label" for="107_51">
+                § 107.51 - Operating limitations for Small Unmanned Aircraft
+              </label>
+              <p>Allows pilot to fly a small UAS:</p>
+              <ul>
+                <li>Over 100 miles per hour groundspeed</li>
+                <li>Over 400 feet above ground level (AGL)</li>
+                <li>With less than 3 statute miles of visibility</li>
+                <li>Within 500 feet vertically or 2000 feet horizontally from clouds</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-12 col-sm-4">
+            <div class="form-check mb-3">
+              <input class="form-check-input" type="checkbox" value="145" id="107_145">
+              <label class="form-check-label" for="107_145">
+                § 107.39 - Operations Over Moving Vehicles
+              </label>
+              <p>Allows pilot to fly over moving vehicles with a small UAS which does not meet conditions of operational categories 1, 2, 3, or 4</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-between">
+        <div class="col-4 col-sm-2 d-grid">
+          <button class="btn btn-outline-secondary d-none" id="form-previous">Back</button>
+        </div>
+        <div class="col-4 col-sm-2 d-grid">
+          <button class="btn btn-outline-primary" id="form-next">Next</button>
+          <button class="btn btn-outline-primary d-none" id="form-submit" onclick="FillForm()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+</html>
