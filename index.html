@@ -19,6 +19,7 @@
   <script src="scripts/pdf-lib.min.js"></script>
   <script src="https://unpkg.com/downloadjs@1.4.7"></script>
   <script src="scripts/fill-pdf.js"></script>
+  <script src="scripts/get-list.js"></script>
   <link href="common_styles.css" rel="stylesheet">
 </head>
 <main>
@@ -35,49 +36,49 @@
         <div class="row">
           <div class="col-12 col-sm-6">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="job_number" placeholder="1234567890" value="23009999">
-              <label for="job_number">Job Number</label>
+              <input type="text" class="form-control" id="Job_Number" placeholder="1234567890" value="23009999">
+              <label for="Job_Number">Job Number</label>
             </div>
           </div>
           <div class="col-12 col-sm-3">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="flight_number" placeholder="1" value="1">
-              <label for="flight_number">Flight Number</label>
+              <input type="text" class="form-control" id="Flight_Number" placeholder="1" value="1">
+              <label for="Flight_Number">Flight Number</label>
             </div>
           </div>
           <div class="col-12 col-sm-3">
             <div class="form-floating mb-3">
-              <input type="text" class="form-control" id="project_area" placeholder="1" value="5.24">
-              <label for="project_area">Area (Acres)</label>
+              <input type="text" class="form-control" id="Project_Area" placeholder="1" value="5.24">
+              <label for="Project_Area">Area (Acres)</label>
             </div>
           </div>
           <div class="col-12 col-sm-4">
             <div class="form-floating mb-3">
-              <select class="form-select" id="drone_Name" aria-label="Drone ID">
+              <select class="form-select" id="Drone_Name" aria-label="Drone ID">
               </select>
-              <label for="drone_Name">Drone</label>
+              <label for="Drone_Name">Drone</label>
             </div>
           </div>
           <div class="col-12 col-sm-3">
             <div class="form-floating mb-3">
-              <input id="drone_id" type="text" class="form-control" placeholder="test" readonly>
+              <input id="Drone_ID" type="text" class="form-control" placeholder="test" readonly>
               <label for="drone_ID">FAA Registration Number</label>
             </div>
           </div>
           <div class="col-12 col-sm-2">
             <div class="form-floating mb-3">
-              <input id="Flight_Type" type="text" class="form-control" placeholder="test">
-              <label for="drone_battery">Battery</label>
+              <input id="Battery_ID" type="text" class="form-control" placeholder="test">
+              <label for="Battery_ID">Battery</label>
             </div>
           </div>
           <div class="col-12 col-sm-3">
             <div class="form-floating mb-3">
-              <select class="form-select" id="flight_type" aria-label="Flight type">
-                <option value="Photogrammerty">Photogrammetry</option>
+              <select class="form-select" id="Flight_Type" aria-label="Flight type">
+                <option value="Photogrammerty">Photogrammetry</option> <!--The value is here because I can't spell sometimes-->
                 <option>Lidar</option>
                 <option>Training</option>
               </select>
-              <label for="flight_type">Flight Type</label>
+              <label for="Flight_Type">Flight Type</label>
             </div>
           </div>
         </div>
@@ -174,7 +175,32 @@
           </div>
         </div>
       </div>
-
+      <div class="step" style="display: none;">
+        <div class="col-12">
+          <div class="form-floating mb-3">
+            <select class="form-select" id="airspace" aria-label="Floating label select example">
+              <option>Class G</option>
+              <option>Class B</option>
+              <option>Class C</option>
+              <option>Class D</option>
+              <option>Class E</option>
+            </select>
+            <label for="Job_Number">Job Number</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-floating mb-3">
+            <input id="Restrictions" type="text" class="form-control" placeholder="N/A">
+            <label for="Restrictions">Restrictions</label>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-floating mb-3">
+            <input id="LAANC" type="text" class="form-control" placeholder="N/A">
+            <label for="LAANC">Low Altitude Authorization and Notification Capability (LAANC) Authorization</label>
+          </div>
+        </div>
+      </div>
       <div class="row justify-content-between">
         <div class="col-4 col-sm-2 d-grid">
           <button class="btn btn-outline-secondary d-none" id="form-previous">Back</button>
