@@ -81,6 +81,21 @@
               <label for="Flight_Type">Flight Type</label>
             </div>
           </div>
+          <div class="col-12 col-sm-5">
+            <div class="form-floating mb-3">
+              <input id="Report-Latitude" type="text" class="form-control" placeholder="test" readonly>
+              <label for="Report-Latitude">Latitude</label>
+            </div>
+          </div>
+          <div class="col-12 col-sm-5">
+            <div class="form-floating mb-3">
+              <input id="Report-Longitude" type="text" class="form-control" placeholder="test" readonly>
+              <label for="Report-Longitude">Longitude</label>
+            </div>
+          </div>
+          <div class="col-4 col-sm-2 d-grid">
+            <button class="btn btn-outline-primary mb-3" id="form-getGeo" onclick="initGeolocation();">Get Location</button>
+          </div>
         </div>
       </div>
       <div class="step" style="display: none;">
